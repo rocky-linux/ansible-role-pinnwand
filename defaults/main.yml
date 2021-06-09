@@ -1,2 +1,43 @@
 ---
-# ansible default variables - most variables live here
+# defaults file for pinnwand
+
+pinnwand_config:
+  database:
+    scheme: pgsql
+    username: pinnwand
+    password: password
+    hostname: localhost
+    port: 5432
+    database: pinnwand_db
+  paste_size: 262144
+  preferred_lexers: []
+  logo_path: /opt/pinnwand/logo.png
+  page_path: /tmp
+  page_list:
+    - about
+    - removal
+    - expiry
+  footer:
+  paste_help:
+  report_email: 'example@example.com'
+  expiries:
+    - name: 1hour
+      time: 3600
+    - name: 1day
+      time: 86400
+    - name: 1week
+      time: 604800
+  ratelimits:
+    - name: read
+      capacity: 100
+      consume: 1
+      refill: 2
+    - name: create
+      capacity: 2
+      consume: 2
+      refill: 1
+    - name: delete
+      capacity: 2
+      consume: 2
+      refill: 1
+  spamscore: 50

@@ -1,0 +1,16 @@
+[Unit]
+Description=Pinnwand
+Requires=network.target
+After=multi-user.target
+
+[Service]
+Type=simple
+User=pinnwand
+Group=pinnwand
+WorkingDirectory=/opt/pinnwand/
+ExecStart=/opt/pinnwand/bin/matterbridge --configuration-path pinnwand.toml
+Restart=always
+RestartSec=60
+
+[Install]
+WantedBy=multi-user.target

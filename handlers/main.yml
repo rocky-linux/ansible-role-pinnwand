@@ -1,0 +1,6 @@
+---
+# handlers file for pinnwand
+- name: restart pinnwand
+  service:
+    name: pinnwand
+    state: restarted
