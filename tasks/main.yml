@@ -1,2 +1,62 @@
 ---
 # tasks file for pinnwand
+- name: "install {{ item }}"
+  package:
+    state: present
+    name: "{{ item }}"
+  with_items:
+    - python39
+    - python39-setuptools
+    - python39-pip
+
+- name: create pinnwand system user
+  user:
+    name: pinnwand
+    comment: "system user to run pinnwand - do not use"
+    system: yes
+    home: "/opt/pinnwand"
+    create_home: yes
+
+- name: create/set permissions on /opt/pinnwand static config directory
+  file:
+    state: directory
+    recurse: yes
+    path: "/opt/pinnwand"
+    mode: 0755
+    owner: pinnwand
+    group: pinnwand
+    setype: etc_t
+    seuser: system_u
+
+- name: install pinnwand into virtualenv
+  pip:
+    name: pinnwand
+    extra_args: --user
+    executable: pip3.9
+  notify: restart pinnwand
+
+
+- name: install /opt/pinnwand/pinnwand.toml
+  template:
+    src: pinnwand.toml
+    dest: "/opt/pinnwand/pinnwand.toml"
+    mode: 0640
+    owner: pinnwand
+    group: pinnwand
+    setype: etc_t
+    seuser: system_u
+  notify: restart pinnwand
+
+- name: add /etc/systemd/system/pinnwand.service (systemd unit file)
+  copy:
+    src: pinnwand.service
+    dest: "/etc/systemd/system/pinnwand.service"
+    mode: 0644
+    seuser: system_u
+    setype: systemd_unit_file_t
+
+- name: start/enable pinnwand.service
+  service:
+    name: pinnwand
+    state: started
+    enabled: yes
