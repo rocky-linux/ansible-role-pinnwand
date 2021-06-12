@@ -17,8 +17,8 @@ pinnwand_config:
     - about
     - removal
     - expiry
-  footer:
-  paste_help:
+  footer: ''
+  paste_help: ''
   report_email: 'example@example.com'
   expiries:
     - name: 1hour
