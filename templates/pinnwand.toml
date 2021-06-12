@@ -26,7 +26,7 @@ preferred_lexers = {{ config['preferred_lexers'] | default([]) }}
 
 # Logo path, used to render your logo. If left out the default logo will be
 # used. This file must be a png file.
-{% if config['logo_path'] is defined %}
+{% if config['logo_path'] is defined  and config['logo_path'] | length %}
 logo_path   = "{{ config['logo_path'] }}"
 {% else %}
 # logo_path = "/path/to/a/file.png"
@@ -46,14 +46,14 @@ page_list = ["about", "removal", "expiry"]
 
 # The footer in raw HTML, shown at the bottom of the page and handy to link to
 # your previously configured pages.
-{% if config['footer'] is defined %}
+{% if config['footer'] is defined and config['footer']|length %}
 footer = {{ config['footer'] }}
 {% else %}
 footer =  'View <a href="//github.com/supakeen/pinnwand" target="_BLANK">source code</a>,the <a href="/removal">removal</a> or <a href="/expiry">expiry</a> stories, or read the <a href="/about">about</a> page.'
 {% endif %}
 
 # HTML for the 'help text' that can be shown above the paste area, if left empty no help text will be shown.
-{% if config['paste_help'] is defined %}
+{% if config['paste_help'] is defined and config['paste_help']|length  %}
 paste_help = {{ config['paste_help'] }}
 {% else %}
 paste_help = '<p>Welcome to pinnwand, this site is a pastebin. It allows you to share code with others. If you write code in the text area below and press the paste button you will be given a link you can share with others so they can view your code as well.</p><p>People with the link can view your pasted code, only you can remove your paste and it expires automatically. Note that anyone could guess the URI to your paste so don't rely on it being private.</p>'
