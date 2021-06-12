@@ -30,7 +30,7 @@
 
 - name: install pinnwand into virtualenv
   pip:
-    name: pinnwand
+    name: ['pinnwand', 'psycopg2']
     extra_args: --user
     executable: pip3.9
   notify: restart pinnwand
