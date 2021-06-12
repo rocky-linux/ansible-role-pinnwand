@@ -62,7 +62,7 @@ paste_help = "<p>Welcome to pinnwand, this site is a pastebin. It allows you to 
 # Email used for file reporting. If the value is not None then a href with a mailto
 # link will be added to every paste page thus allowing the users to report pastes
 # that may need removal.
-report_email = {{ config['report_email'] | default('maintainer@example.com') }}
+report_email = "{{ config['report_email'] | default('maintainer@example.com') }}"
 
 # Expiries are given by a name and their duration in seconds, if you want to do
 # 'forever' set a really large number...
