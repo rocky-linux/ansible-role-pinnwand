@@ -70,7 +70,7 @@ report_email = "{{ config['report_email'] | default('maintainer@example.com') }}
 {% if expiries is defined %}
 
 {% for expiry in expiries %}
-expires.{{expiry.name}} = {{expiry.time}}
+expiries.{{expiry.name}} = {{expiry.time}}
 {% endfor %}
 
 {% else %}
