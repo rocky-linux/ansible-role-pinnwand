@@ -8,7 +8,7 @@ Type=simple
 User=pinnwand
 Group=pinnwand
 WorkingDirectory=/opt/pinnwand/
-ExecStart=/opt/pinnwand/.local/bin/pinnwand --configuration-path pinnwand.toml
+ExecStart=/opt/pinnwand/.local/bin/pinnwand --configuration-path pinnwand.toml http
 Restart=always
 RestartSec=60
 
